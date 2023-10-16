@@ -1,0 +1,50 @@
+from news.models import *
+
+1.	
+user1 = User.objects.create_user('Вита')  
+user2 = User.objects.create_user('Лина')
+
+2.
+author1= Author.objects.create(user = user1)
+author2 = Author.objects.create(user = user2)
+
+3.
+cat1 = Category.objects.create(name = 'Природа')
+cat2 = Category.objects.create(name = 'Общество')
+cat3 = Category.objects.create(name = 'Технологии')
+cat4 = Category.objects.create(name = 'Культура')
+
+4.
+post1 = Post.objects.create(author = author1, title = 'Все о природе', post_type = 'AR', text = 'Здесь текст')
+
+post2 = Post.objects.create(author = author2, title = 'Взаимоотношения', post_type = 'AR', text = 'Здесь тоже текст') 
+
+post3 = Post.objects.create(author = author1, title = 'Шок Новость', post_type = 'NE', text = 'Здесь текст')
+5. 
+post1.category.add(cat1)
+
+post2.category.add(cat2)
+post2.category.add(cat4)
+
+post3.category.add(cat2)
+post3.category.add(cat1)
+post3.category.add(cat3) 
+
+6.
+comment1 = Comment.objects.create(post=post1, text ='вау!', user = user3)
+comment2 = Comment.objects.create(post=post2, text ='невероятно!', user = user4)	
+comment3 = Comment.objects.create(post=post2, text ='...', user = user5)
+comment4 = Comment.objects.create(post=post2, text ='0_0', user = user4)
+comment5 = Comment.objects.create(post=post1, text ='	(⇀‸↼‶)', user = user3)
+comment6 = Comment.objects.create(post=post1, text ='･ﾟ･(｡>ω<｡)･ﾟ･', user = user3)
+
+7.
+comment4.like() 
+comment1.dislike() 
+
+8.
+post1.like()
+post3.dislike()
+
+11.
+comments = Comment.objects.filter(poost = best_post)
